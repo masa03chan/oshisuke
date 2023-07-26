@@ -32,3 +32,6 @@
 ## 使用素材
 - フリーフォント素材として以下を使用
   - Font Free(https://fontfree.me/)
+
+## 実装機能リスト
+- https://docs.google.com/spreadsheets/d/1xElls9VpV-StKrczkRsmSQYUk8vUExTPXPZns3sVAww/edit?usp=sharing
