@@ -32,6 +32,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      t.string :name, null: false
+      t.text :caption, null: false
+      t.boolean :email_receiving_activation, null: false, default: true # 初期状態はtrue（リマインダー機能がオン）の状態
+      t.boolean :is_deleted, default: false, null: false # 初期状態はfalse（退会機能オフ）の状態
+      t.string :avatar, null: false
 
       t.timestamps null: false
     end
