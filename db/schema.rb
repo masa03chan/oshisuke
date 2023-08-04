@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_03_032602) do
+ActiveRecord::Schema.define(version: 2023_08_04_055853) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,39 @@ ActiveRecord::Schema.define(version: 2023_08_03_032602) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_bookmarks_on_event_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string "title", null: false
+    t.boolean "status", default: false, null: false
+    t.string "caption", null: false
+    t.string "public_link", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "start_time", null: false
+    t.integer "user_id", null: false
+    t.integer "content_id", null: false
+    t.string "place", null: false
+    t.datetime "date", null: false
+    t.string "caption", null: false
+    t.string "links", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["content_id"], name: "index_events_on_content_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -71,4 +104,8 @@ ActiveRecord::Schema.define(version: 2023_08_03_032602) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookmarks", "events"
+  add_foreign_key "bookmarks", "users"
+  add_foreign_key "events", "contents"
+  add_foreign_key "events", "users"
 end

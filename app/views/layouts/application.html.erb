@@ -10,7 +10,54 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header>
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container">
+          <%= link_to 推しスケ, root_path, class: "navbar-brand col-sm-3" %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="row">
+            <div class="collapse navbar-collapse " id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto d-flex justify-content-end col-sm">
+                <% if customer_signed_in? %>
+                  <%= render "public/shared/sign_in_header" %>
+                <% elsif admin_signed_in? %>
+                  <%= render "admin/shared/sign_in_header" %>
+                <% else %>
+                  <%= render "public/shared/sign_out_header" %>
+                <% end %>
+              </ul>
+            </div>
+            <div class="row d-flex justify-content-end col-sm-12 mx-0">
+              <% if admin_signed_in? %>
+                <%= render "admin/shared/search", q: @q %>
+              <% elsif customer_signed_in? %>
+                <div class="col-sm-4"><p class="text-left text-nowrap">ようこそ、<%= current_customer.last_name %>さん！</p></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5">
+                  <%= render "public/shared/content_search", q: @q %>
+                </div>
+              <% else %>
+                <%= render "public/shared/content_search", q: @q %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
     <%= yield %>
+    </main>
+    <footer>
+      <div class="mt-5 bg-light vh-100">
+        <div class="row mx-auto">
+          <div class="mx-auto mt-2">
+            <P>Copyright ©2023 Masami Yamaguchi All Rights Reserved.</P>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

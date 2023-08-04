@@ -1,0 +1,20 @@
+<li class="nav-link text-light">
+  <%= link_to content_event_bookmarks_path, class: "header-button" do %>
+    <button type="button" class="text-nowrap btn btn-outline-secondary">マイカレンダー</button>
+  <% end %>
+</li>
+<li class="nav-link text-light">
+  <%= link_to user_path, class: "header-button" do %>
+    <button type="button" class="text-nowrap btn btn-outline-secondary">マイページ</button>
+  <% end %>
+</li>
+<li class="nav-link text-light">
+  <%= link_to contents_path, class: "header-button" do %>
+    <button type="button" class="text-nowrap btn btn-outline-secondary">コンテンツ一覧</button>
+  <% end %>
+</li>
+<li class="nav-link text-light">
+  <%= link_to destroy_user_session_path, method: :delete, class: "header-button" do %>
+    <button type="button" class="text-nowrap btn btn-outline-secondary">ログアウト</button>
+  <% end %>
+</li>
