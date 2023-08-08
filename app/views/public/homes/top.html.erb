@@ -2,26 +2,29 @@
   <%= flash[:notice] %>
 </div>
 <div class="container">
-  <div class="row">
+  <div class="row d-flex">
     <div class="col-md-12 mx-auto">
       <div class="row">
         <div class="text-center mt-5">
           <!-- <!%= image_tag 'show-window.jpg', width: "100%", height: "300" %> -->
           <div class="">
+            <h3>推しのイベントをみんなでスケジュール管理</h3>
             <p class="text-center text-align-center">
-              ようこそ、ながのCAKEへ！</br>
-              このサイトは、ケーキ販売のECサイトになります。</br>
-              会員でない方も商品の閲覧はできますが、</br>
-              購入には会員登録が必要になります。
+              推しのイベント・ライブの情報をすべて追うのは骨が折れます。数日のみの期間限定イベントを逃してしまうなど、忙しいオタクにとっては悩ましい問題です。</br>
+              そこで推しのイベントスケジュールカレンダーをオタクみんなで作り上げ、各イベントのリマインダーを設定しましょう。各イベントはマイカレンダーに保存が可能です。</br>
+              隙のない推し活スケジュールの管理を目指し、最高のオタクライフを送りましょう！</br>
             </p>
           </div>
         </div>
       </div>
-      <div class="row">
-        <%= render "public/shared/content_search", q: @q %>
+      <div class="row col-md-8 mx-auto">
+        <%= render "public/shared/content_search" %>
       </div>
-      <div class="row">
-        
+      <div class="row col-md-8 mx-auto mt-5">
+        <div class="text-center">
+          <%= link_to "新規登録", new_user_registration_path, class: "col-sm-3 btn btn-success text-nowrap mr-3" %>
+          <%= link_to "ログイン", new_user_session_path, class: "col-sm-3 btn btn-primary text-nowrap" %>
+        </div>
       </div>
     </div>
   </div>

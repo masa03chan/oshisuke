@@ -1,6 +1,6 @@
-<%= search_form_for(q, url:contents_path) do |f| %>
+<%= search_form_for @search, url: contents_path do |f| %>
   <div class="input-group">
-    <%= f.text_field :title_cont, placeholder: "search", class: "form-control" %>
+    <%= f.text_field :title_cont, placeholder: "推しを探す！", class: "form-control" %>
     <span class="input-group-btn">
       <%= button_tag type: "submit", class: "btn btn-outline-secondary" do %>
         <i class="fas fa-search"></i>

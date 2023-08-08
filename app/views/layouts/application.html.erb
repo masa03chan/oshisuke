@@ -14,14 +14,14 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container">
-          <%= link_to 推しスケ, root_path, class: "navbar-brand col-sm-3" %>
+          <%= link_to "推しスケ", root_path, class: "navbar-brand col-sm-3" %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="row">
             <div class="collapse navbar-collapse " id="navbarNavDropdown">
-              <ul class="navbar-nav ml-auto d-flex justify-content-end col-sm">
-                <% if customer_signed_in? %>
+              <ul class="navbar-nav ml-auto d-flex justify-content-end col-md">
+                <% if user_signed_in? %>
                   <%= render "public/shared/sign_in_header" %>
                 <% elsif admin_signed_in? %>
                   <%= render "admin/shared/sign_in_header" %>
@@ -32,15 +32,17 @@
             </div>
             <div class="row d-flex justify-content-end col-sm-12 mx-0">
               <% if admin_signed_in? %>
-                <%= render "admin/shared/search", q: @q %>
-              <% elsif customer_signed_in? %>
-                <div class="col-sm-4"><p class="text-left text-nowrap">ようこそ、<%= current_customer.last_name %>さん！</p></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-5">
-                  <%= render "public/shared/content_search", q: @q %>
+                <%= render "admin/shared/search" %>
+              <% elsif user_signed_in? %>
+                <div class="col-md-4"><p class="text-left text-nowrap">ようこそ、<%= current_customer.last_name %>さん！</p></div>
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                  <%= render "public/shared/content_search" %>
                 </div>
               <% else %>
-                <%= render "public/shared/content_search", q: @q %>
+                <div class="col-md-5">
+                  <%= render "public/shared/content_search" %>
+                </div>
               <% end %>
             </div>
           </div>

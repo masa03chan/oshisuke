@@ -1,4 +1,4 @@
-<%= search_form_for(q, url:admin_contents_path) do |f| %>
+<%= search_form_for @search, url: admin_contents_path do |f| %>
   <div class="input-group">
     <%= f.text_field :title_cont, placeholder: "search", class: "form-control" %>
     <span class="input-group-btn">
