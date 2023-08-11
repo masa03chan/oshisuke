@@ -15,37 +15,38 @@
       <nav class="navbar navbar-expand-md navbar-light bg-light">
         <div class="container">
           <%= link_to "推しスケ", root_path, class: "navbar-brand col-sm-3" %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="row">
-            <div class="collapse navbar-collapse " id="navbarNavDropdown">
-              <ul class="navbar-nav ml-auto d-flex justify-content-end col-md">
-                <% if user_signed_in? %>
-                  <%= render "public/shared/sign_in_header" %>
-                <% elsif admin_signed_in? %>
-                  <%= render "admin/shared/sign_in_header" %>
-                <% else %>
-                  <%= render "public/shared/sign_out_header" %>
-                <% end %>
-              </ul>
-            </div>
-            <div class="row d-flex justify-content-end col-sm-12 mx-0">
-              <% if admin_signed_in? %>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto d-flex justify-content-end col-md">
+              <% if user_signed_in? %>
+                <%= render "public/shared/sign_in_header" %>
+                <%= render "public/shared/content_search" %>
+              <% elsif admin_signed_in? %>
+                <%= render "admin/shared/sign_in_header" %>
                 <%= render "admin/shared/search" %>
-              <% elsif user_signed_in? %>
-                <div class="col-md-4"><p class="text-left text-nowrap">ようこそ、<%= current_customer.last_name %>さん！</p></div>
-                <div class="col-md-1"></div>
-                <div class="col-md-5">
-                  <%= render "public/shared/content_search" %>
-                </div>
               <% else %>
-                <div class="col-md-5">
-                  <%= render "public/shared/content_search" %>
-                </div>
+                <%= render "public/shared/sign_out_header" %>
+                <%= render "public/shared/content_search" %>
               <% end %>
-            </div>
+            </ul>
           </div>
+          <!--<div class="row d-flex justify-content-end col-sm-12 mx-0">
+            <!% if admin_signed_in? %>
+
+            <!% elsif user_signed_in? %>
+              <div class="col-md-4"><p class="text-left text-nowrap">ようこそ、<!%= current_customer.last_name %>さん！</p></div>
+              <div class="col-md-1"></div>
+              <div class="col-md-5">
+                <!%= render "public/shared/content_search" %>
+              </div>
+            <!% else %>
+              <div class="col-md-5">
+
+              </div>
+            <!% end %>
+          </div>-->
         </div>
       </nav>
     </header>
@@ -54,10 +55,8 @@
     </main>
     <footer>
       <div class="mt-5 bg-light vh-100">
-        <div class="row mx-auto">
-          <div class="mx-auto mt-2">
-            <P>Copyright ©2023 Masami Yamaguchi All Rights Reserved.</P>
-          </div>
+        <div class="row mx-auto ">
+          <P class="mx-auto mt-2 text-center">Copyright ©2023 Masami Yamaguchi All Rights Reserved.</P>
         </div>
       </div>
     </footer>

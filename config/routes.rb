@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
 
+  devise_for :users, controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+  
   namespace :admin do
     resources :contents, except: [:edit, :update] do
       collection do
@@ -30,15 +38,6 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
     end
   end
-
-  devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
-  }
-
-  devise_for :users, controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

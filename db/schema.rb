@@ -93,9 +93,9 @@ ActiveRecord::Schema.define(version: 2023_08_04_055853) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.text "caption", null: false
-    t.boolean "email_receiving_activation", default: true, null: false
+    t.boolean "email_receiving_activation", default: true, null: false　#リマインダー
     t.boolean "is_deleted", default: false, null: false
-    t.string "avatar", null: false
+    t.string "avatar", null: false #プロフィール
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
