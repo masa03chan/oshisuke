@@ -6,8 +6,11 @@ class Public::ContentsController < ApplicationController
 
   def new
   end
-  
-  
+
+  def index
+    @contents = Contents.all
+  end
+
 private
 
   def set_q
