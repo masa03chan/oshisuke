@@ -81,8 +81,7 @@ ActiveRecord::Schema.define(version: 2023_08_13_065637) do
 
   create_table "contents", force: :cascade do |t|
     t.string "title", null: false
-    t.boolean "status", default: false, null: false
-    t.string "thumbnail", null: false
+    t.boolean "status", default: true, null: false
     t.string "caption", null: false
     t.string "public_link", null: false
     t.datetime "created_at", precision: 6, null: false

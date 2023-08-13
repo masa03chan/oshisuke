@@ -9,15 +9,18 @@
         <% if @contents.present? %>
           <% @contents.each do |content| %>
             <div class="d-flex flex-column item-box mr-md-1 mr-0", style="width: 170px;">
-              <%= link_to item_path(item.id) do %>
+              <%= link_to content_path(content.id) do %>
                 <%= image_tag content.get_image(370, 100) %>
               <% end %>
               <%= content.name %></br>
-              <%= content.to_s(:delimited) %>
+              <%= content.content_followings.count.to_s(:delimited) %>
             </div>
           <% end %>
         <% else %>
-          <p>商品が見つかりませんでした。</p>
+          <p class="text-center">コンテンツが見つかりませんでした。コンテンツを登録してみましょう！</p>
+          <div class="text-center">
+            <%= link_to "コンテンツを登録する", new_content_path, class: "col-md-5 btn btn-primary text-nowrap" %>
+          </div>
         <% end %>
       </div>
       <%= paginate @contents %>

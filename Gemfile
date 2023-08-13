@@ -69,4 +69,4 @@ gem "enum_help"
 
 gem 'ransack'
 
-gem 'carrierwave'
+gem 'kaminari','~> 1.2.1'

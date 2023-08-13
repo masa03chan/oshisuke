@@ -28,10 +28,10 @@
 
         <div class="form-group row mb-3">
           <div class="col-md-3 col-form-label">
-            <%= f.label :avatar, class: "text-nowrap" do %>プロフィール画像<% end %>
+            <%= f.label :profile_image, class: "text-nowrap" do %>プロフィール画像<% end %>
           </div>
           <div class="col-md-6">
-            <%= f.file_field :avatar, autofocus: true, accept: "image/*", class: "form-control" %>
+            <%= f.file_field :profile_image, accept: "image/*", class: "form-control" %>
           </div>
         </div>
 
