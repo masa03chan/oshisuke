@@ -21,14 +21,14 @@ class Public::ContentsController < ApplicationController
   def index
     if params[:q]
       @results = @q.result
-      @contents = @q.result.where(status: true).page(params[:page]).per(8)
+      @contents = @q.result.where(status: true).page(params[:page]).per(10)
       @quantity = @q.result.where(status: true).count
     else
-      @contents = Content.where(status: true).page(params[:page]).per(8)
+      @contents = Content.where(status: true).page(params[:page]).per(10)
       @quantity = Content.count
     end
   end
-  
+
   def show
     @content = Content.find(params[:id])
   end

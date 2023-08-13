@@ -3,17 +3,21 @@
 </div>
 <div class="container">
   <div class="row d-flex flex-row">
-    <div class="col-md-9 mx-auto justify-content-sm-start justify-content-center">
+    <div class="col mx-auto justify-content-sm-start justify-content-center">
       <h5 class="d-inline-block col-md-2 text-center my-5 text-nowrap">コンテンツ一覧<span>(全<%= @quantity %>件)</span></h5>
-      <div class="row mx-auto">
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 mx-auto">
         <% if @contents.present? %>
           <% @contents.each do |content| %>
-            <div class="d-flex flex-column item-box mr-md-1 mr-0", style="width: 170px;">
-              <%= link_to content_path(content.id) do %>
-                <%= image_tag content.get_image(370, 100) %>
+            <div class="d-flex flex-column card p-0 me-md-2 me-0">
+              <%= link_to content_path(content.id), class: "card-img-top text-center" do %>
+                <%= image_tag content.get_image(180, 100), class: "img-fluid" %>
               <% end %>
-              <%= content.name %></br>
-              <%= content.content_followings.count.to_s(:delimited) %>
+              <div class="card-body">
+                <h6 class="card-title"><%= content.title %></h6>
+                <p class="card-text text-end">フォロワー:
+                  <%= content.content_followings.count.to_s(:delimited) %>人
+                </p>
+              </div>
             </div>
           <% end %>
         <% else %>
