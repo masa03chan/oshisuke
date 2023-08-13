@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_04_055853) do
+ActiveRecord::Schema.define(version: 2023_08_13_065637) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -61,9 +61,28 @@ ActiveRecord::Schema.define(version: 2023_08_04_055853) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "content_followings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "content_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["content_id"], name: "index_content_followings_on_content_id"
+    t.index ["user_id"], name: "index_content_followings_on_user_id"
+  end
+
+  create_table "content_follows", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "content_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["content_id"], name: "index_content_follows_on_content_id"
+    t.index ["user_id"], name: "index_content_follows_on_user_id"
+  end
+
   create_table "contents", force: :cascade do |t|
     t.string "title", null: false
     t.boolean "status", default: false, null: false
+    t.string "thumbnail", null: false
     t.string "caption", null: false
     t.string "public_link", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -93,9 +112,9 @@ ActiveRecord::Schema.define(version: 2023_08_04_055853) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.text "caption", null: false
-    t.boolean "email_receiving_activation", default: true, null: false　#リマインダー
+    t.boolean "email_receiving_activation", default: true, null: false
     t.boolean "is_deleted", default: false, null: false
-    t.string "avatar", null: false #プロフィール
+    t.string "avatar", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -106,6 +125,10 @@ ActiveRecord::Schema.define(version: 2023_08_04_055853) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookmarks", "events"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "content_followings", "contents"
+  add_foreign_key "content_followings", "users"
+  add_foreign_key "content_follows", "contents"
+  add_foreign_key "content_follows", "users"
   add_foreign_key "events", "contents"
   add_foreign_key "events", "users"
 end

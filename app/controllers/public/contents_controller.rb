@@ -8,7 +8,14 @@ class Public::ContentsController < ApplicationController
   end
 
   def index
-    @contents = Contents.all
+    if params[:q]
+      @results = @q.result
+      @contents = @q.result.where(is_active: true).page(params[:page]).per(8)
+      @quantity = @q.result.where(is_active: true).count
+    else
+      @contents = Item.where(is_active: true).page(params[:page]).per(8)
+      @quantity = Item.count
+    end
   end
 
 private
