@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h5 class="d-inline-block bg-light col-2 text-center my-5 text-nowrap">コンテンツ詳細</h5>
+      <h5 class="bg-light col-2 text-center my-5 text-nowrap">コンテンツ詳細</h5>
     </div>
   </div>
   <div class="row text-center mb-2">
@@ -46,8 +46,17 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <div class="col-md-3 d-grid gap-2">
-      <%= link_to "詳細を編集する", edit_content_path(@content), class: "btn btn-success" %>
-    </div>
+    <% if user_signed_in? %>
+      <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+        <%= link_to "イベントカレンダー", content_events_path(@content), class: "btn btn-primary" %>
+      </div>
+      <div class="col-md-3 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+        <%= link_to "詳細を編集する", edit_content_path(@content), class: "btn btn-success" %>
+      </div>
+    <% else %>
+      <<div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+        <%= link_to "イベントカレンダー", content_events_path(@content), class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
 </div>

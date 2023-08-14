@@ -33,6 +33,20 @@ class Public::ContentsController < ApplicationController
     @content = Content.find(params[:id])
   end
 
+  def edit
+    @content = Content.find(params[:id])
+  end
+
+  def update
+    @content = Content.find(params[:id])
+    if @content.update(content_params)
+      flash[:notice] = "コンテンツ情報を編集しました。"
+      redirect_to content_path(@content.id)
+    else
+      render :edit
+    end
+  end
+
 private
 
   def set_q
