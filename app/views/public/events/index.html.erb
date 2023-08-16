@@ -10,12 +10,14 @@
   <div class="row text-center">
     <!--simple calendarを貼り付けています-->
     <%= month_calendar events: @events do |date,events| %>
-      <%= date.day %>
-      <span class="ms-auto">
-        <%= link_to new_content_event_path(default_date: date), class: "btn btn-sm btn-outline-primary fs-10" do %>
-          <i class="fa-solid fa-plus"></i>
-        <% end %>
-      </span>
+      <div>
+        <%= date.day %>
+        <span class="ms-auto">
+          <%= link_to new_content_event_path(default_date: date), class: "btn btn-sm btn-outline-primary fs-10" do %>
+            <i class="fa-solid fa-plus"></i>
+          <% end %>
+        </span>
+      </div>
       <% events.each do |event| %>
         <div>
           <%= link_to content_event_path(event.id) do %>

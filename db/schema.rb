@@ -91,10 +91,10 @@ ActiveRecord::Schema.define(version: 2023_08_13_065637) do
   create_table "events", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
     t.integer "user_id", null: false
     t.integer "content_id", null: false
     t.string "place", null: false
-    t.datetime "date", null: false
     t.string "caption", null: false
     t.string "links", null: false
     t.datetime "created_at", precision: 6, null: false

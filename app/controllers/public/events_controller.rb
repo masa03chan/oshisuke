@@ -48,7 +48,7 @@ private
   end
 
   def event_params
-    params.require(:content).permit(:title, :caption, :start_time, :place, :date, :link)
+    params.require(:event).permit(:title, :caption, :start_time, :place, :end_time, :link)
   end
 
 end

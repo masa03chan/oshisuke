@@ -1,2 +1,84 @@
-<h1>Public::Events#new</h1>
-<p>Find me in app/views/public/events/new.html.erb</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h5 class="bg-light col-2 text-center my-5 text-nowrap">イベント新規登録</h5>
+    </div>
+  </div>
+  <div class="row">
+    <% if @event.errors.any? %>
+    <div>
+      <h2><%= @event.errors.count %> 件のエラーがあります。</h2>
+      <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="col-md-12 ">
+      <%= form_with model: @event, url: content_events_path, local:true do |f| %>
+        <div class="form-group row mb-3">
+          <div class="offset-md-1 col-md-2 col-form-label">
+            <%= f.label :title, "イベントタイトル(正式名称)",class: "font-weight-bold text-nowrap" %>
+          </div>
+          <div class="offset-md-1 col-md-4 col-form">
+            <%= f.text_field :title, autofocus: true, autocomplete: "title", placeholder: "推し助ライブ", class: "form-control border border-secondary" %>
+          </div>
+        </div>
+
+        <div class="form-group row mb-3">
+          <div class="offset-md-1 col-md-2 col-form-label">
+            <%= f.label :start_time, "開始日時",class: "font-weight-bold text-nowrap" %>
+          </div>
+          <div class="offset-md-1 col-md-4 col-form">
+            <%= f.datetime_select :start_time, autofocus: true, autocomplete: "date", placeholder: "2000/1/1", class: "form-control border border-secondary" %>
+          </div>
+        </div>
+        <div class="form-group row mb-3">
+          <div class="offset-md-1 col-md-2 col-form-label">
+            <%= f.label :end_time, "終了日時",class: "font-weight-bold text-nowrap" %>
+          </div>
+          <div class="offset-md-1 col-md-4 col-form">
+            <%= f.datetime_select :end_time, autofocus: true, autocomplete: "date", placeholder: "2000/1/1", class: "form-control border border-secondary" %>
+          </div>
+        </div>
+
+        <div class="form-group row mb-3">
+          <div class="offset-md-1 col-md-2 col-form-label">
+            <%= f.label :place, "場所",class: "font-weight-bold text-nowrap" %>
+          </div>
+          <div class="offset-md-1 col-md-4 col-form">
+            <%= f.text_field :place, autofocus: true, autocomplete: "place", placeholder: "推し助ドーム", class: "form-control form-control-lg border border-secondary", rows: "3" %>
+          </div>
+        </div>
+
+        <div class="form-group row mb-3">
+          <div class="offset-md-1 col-md-2 col-form-label">
+            <%= f.label :caption, "イベント説明",class: "font-weight-bold text-nowrap" %>
+          </div>
+          <div class="offset-md-1 col-md-4 col-form">
+            <%= f.text_area :caption, autofocus: true, autocomplete: "caption", placeholder: "ここに説明文を記述します", class: "form-control form-control-lg border border-secondary", rows: "3" %>
+          </div>
+        </div>
+
+        <div class="form-group row mb-5">
+          <div class="offset-md-1 col-md-2 col-form-label">
+            <%= f.label :link, "公式イベントページリンク",class: "font-weight-bold text-nowrap" %>
+          </div>
+          <div class="offset-md-1 col-md-4 col-form">
+            <%= f.text_field :link, autofocus: true, autocomplete: "link", placeholder: "https://oshisuke-live.com", class: "form-control border border-secondary" %>
+          </div>
+        </div>
+
+        <div class="form-group row ">
+          <div class="actions offset-md-4 col-md-4 d-grid gap-2 col-form">
+            <%= f.submit "新規登録", class: "btn btn-success " %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

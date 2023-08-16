@@ -4,9 +4,7 @@ class Event < ApplicationRecord
 
   validates :title, presence: true
   validates :start_time, presence: true
-  validates :place, presence: true
-  validates :date, presence: true
-  validates :caption, presence: true
+  validates :end_time, presence: true
 
   def self.ransackable_attributes(auth_object = nil)
     ["title","place","date"]
