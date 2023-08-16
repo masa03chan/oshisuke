@@ -19,14 +19,14 @@
         <div class="col-3">
           <% if user_signed_in? %>
             <% if content_followed?(current_user) %>
-              <!--すでにいいね済みの場合はdestroyアクションへ-->
+              <!--すでにいいね済みの場合はdestroyアクション-->
               <%= link_to content_content_followings_path(@content.id), method: :delete do %>
                 <span class: "btn btn-light">フォロー解除</span>
               <% end %>
             <% else %>
-              <!--まだいいねしていない場合はcreateアクションへ-->
+              <!--まだいいねしていない場合はcreateアクション-->
               <%= link_to content_content_followings_path(@content.id), method: :post do %>
-                  <span class: "btn btn-primary">フォロー</span>
+                <span class: "btn btn-primary">フォロー</span>
               <% end %>
             <% end %>
           <% end %>
@@ -54,7 +54,7 @@
         <%= link_to "詳細を編集する", edit_content_path(@content), class: "btn btn-success" %>
       </div>
     <% else %>
-      <<div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+      <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
         <%= link_to "イベントカレンダー", content_events_path(@content), class: "btn btn-primary" %>
       </div>
     <% end %>

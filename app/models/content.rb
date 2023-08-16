@@ -1,6 +1,7 @@
 class Content < ApplicationRecord
   has_one_attached :image
   has_many :content_followings, dependent: :destroy
+  has_many :events, dependent: :destroy
 
   validates :title, presence: true
   validates :caption, presence: true

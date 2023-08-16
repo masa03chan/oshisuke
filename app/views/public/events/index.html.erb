@@ -1,2 +1,29 @@
-<h1>Public::Events#index</h1>
-<p>Find me in app/views/public/events/index.html.erb</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 d-flex">
+      <h5 class="bg-light col-3 text-center my-5 text-nowrap"><%= @content.title %>カレンダー</h5>
+    </div>
+  </div>
+  <div class="row text-center">
+    <!--simple calendarを貼り付けています-->
+    <%= month_calendar events: @events do |date,events| %>
+      <%= date.day %>
+      <span class="ms-auto">
+        <%= link_to new_content_event_path(default_date: date), class: "btn btn-sm btn-outline-primary fs-10" do %>
+          <i class="fa-solid fa-plus"></i>
+        <% end %>
+      </span>
+      <% events.each do |event| %>
+        <div>
+          <%= link_to content_event_path(event.id) do %>
+            <%= event.start_time %>
+            <%= event.title %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
