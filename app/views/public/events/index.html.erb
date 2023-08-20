@@ -20,9 +20,9 @@
       </div>
       <% events.each do |event| %>
         <div>
-          <%= link_to content_event_path(event.id) do %>
-            <%= event.start_time %>
+          <%= link_to content_event_path(@content, event) do %>
             <%= event.title %>
+            <%= event.start_time.strftime('%H:%M') %>
           <% end %>
         </div>
       <% end %>

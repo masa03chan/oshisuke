@@ -6,8 +6,8 @@
   </div>
   <div class="row justify-content-around">
     <div class="col-md-12">
-      <%= form_with url: user_registration_path do |f| %>
-      <%= render "public/shared/error_messages", resource: resource %>
+      <%= form_with url: user_registration_path, local: true do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
         <div class="form-group row mb-3">
           <div class="col-md-3 col-form-label">
             <%= f.label :name, "名前" %>

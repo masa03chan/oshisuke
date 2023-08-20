@@ -33,12 +33,12 @@ Rails.application.routes.draw do
         resource :bookmarks, only: [:create, :index, :destroy] #マイイベントカレンダー表示、登録用
       end
     end
-    resources :users, only: [:index, :show, :edit, :update] do
-      member do
-        get :follows, :followers
-      end
-      resource :relationships, only: [:create, :destroy] #ユーザー同士のフォロー機能（今後実装予定）
-    end
+    #resources :users, only: [:show, :edit, :update] do
+      #member do
+       # get :follows, :followers
+      #end
+      #resource :relationships, only: [:create, :destroy] #ユーザー同士のフォロー機能（今後実装予定）
+    #end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

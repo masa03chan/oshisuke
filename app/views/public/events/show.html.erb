@@ -1,2 +1,51 @@
-<h1>Public::Events#show</h1>
-<p>Find me in app/views/public/events/show.html.erb</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h5 class="bg-light col-2 text-center my-5 text-nowrap">イベント詳細</h5>
+    </div>
+  </div>
+  <div class="row text-center mb-2">
+    <div class="col-md-10 mx-auto">
+      <div class="d-flex mb-2">
+        <h4 class="col-md-4"><%= @event.title %></h4>
+      </div>
+      <div class="d-flex mb-2">
+        <label class="col-md-2">開始/終了時刻</label>
+        <p class="col-md-3"><%= @event.start_time.strftime('%Y-%m-%d %H:%M') %></p>/
+        <p class="col-md-3"><%= @event.end_time.strftime('%Y-%m-%d %H:%M') %></p></br>
+      </div>
+      <div class="d-flex mb-2">
+        <label class="col-md-2">場所</label>
+        <p class="col-md-3"><%= @event.place %></p>
+      </div>
+      <div class="d-flex mb-2">
+        <p class="text-break text-start offset-md-2 col-md-8"><%= @event.caption %></p></br>
+      </div>
+      <div class="d-flex mb-5">
+        <label class="col-md-2">サイトリンク</label>
+        <div class="col-md-5">
+          <%= link_to @event.links do %>
+            <%= @event.links %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <!--% if user_signed_in? %-->
+      <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+        <%= link_to "カレンダーに戻る", content_events_path(@content), class: "btn btn-primary" %>
+      </div>
+      <div class="col-md-3 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+        <%= link_to "詳細を編集する", edit_content_event_path(@content, @event), class: "btn btn-success" %>
+      </div>
+    <!--% else %>
+      <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+        <!%= link_to "カレンダーに戻る", content_events_path(@content), class: "btn btn-primary" %>
+      </div>
+    <!% end %-->
+  </div>
+</div>

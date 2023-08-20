@@ -3,12 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one_attached :profile_image
 
-  has_many :events, dependent: :destroy
   has_many :bookmarks, dependent: :destroy #マイイベントカレンダー用
   has_many :content_followings, dependent: :destroy #コンテンツのフォロー用
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
 
   def get_profile_image
     unless profile_image.attached?

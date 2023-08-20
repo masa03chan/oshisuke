@@ -92,20 +92,17 @@ ActiveRecord::Schema.define(version: 2023_08_13_065637) do
     t.string "title", null: false
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
-    t.integer "user_id", null: false
     t.integer "content_id", null: false
     t.string "place", null: false
     t.string "caption", null: false
     t.string "links", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["content_id"], name: "index_events_on_content_id"
-    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -113,7 +110,6 @@ ActiveRecord::Schema.define(version: 2023_08_13_065637) do
     t.text "caption", null: false
     t.boolean "email_receiving_activation", default: true, null: false
     t.boolean "is_deleted", default: false, null: false
-    t.string "avatar", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -128,6 +124,4 @@ ActiveRecord::Schema.define(version: 2023_08_13_065637) do
   add_foreign_key "content_followings", "users"
   add_foreign_key "content_follows", "contents"
   add_foreign_key "content_follows", "users"
-  add_foreign_key "events", "contents"
-  add_foreign_key "events", "users"
 end

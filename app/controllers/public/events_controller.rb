@@ -1,41 +1,40 @@
 class Public::EventsController < ApplicationController
   before_action :set_q, only: [:index, :search]
+  before_action :set_content
+  before_action :set_event, only: [:show, :edit, :update]
+
   def search
     @results = @q.result
   end
 
   def new
-    @event = Event.new
+    @event = @content.events.new
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = @content.events.new(event_params)
     if @event.save
       flash[:notice] = "イベントを登録しました。"
-      redirect_to content_event_path(@event.id)
+      redirect_to content_event_path(@content, @event)
     else
       render :new
     end
   end
 
   def index
-    @content = Content.find(params[:content_id])
-    @events = Event.all
+    @events = @content.events
   end
 
   def show
-    @event= Event.find(params[:id])
   end
 
   def edit
-    @event= Event.find(params[:id])
   end
 
   def update
-    @event= Event.find(params[:id])
-    if @event.update(content_params)
+    if @event.update(event_params)
       flash[:notice] = "イベント情報を編集しました。"
-      redirect_to content_event_path(@event.id)
+      redirect_to content_event_path(@content, @event)
     else
       render :edit
     end
@@ -47,8 +46,16 @@ private
     @q = Event.ransack(params[:q])
   end
 
+  def set_content
+    @content = Content.find(params[:content_id])
+  end
+
+  def set_event
+    @event = @content.events.find(params[:id])
+  end
+
   def event_params
-    params.require(:event).permit(:title, :caption, :start_time, :place, :end_time, :link)
+    params.require(:event).permit(:title, :caption, :start_time, :place, :end_time, :links)
   end
 
 end

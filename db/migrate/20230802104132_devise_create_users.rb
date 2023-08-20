@@ -4,8 +4,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :users do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,              null: false
+      t.string :encrypted_password, null: false
 
       ## Recoverable
       t.string   :reset_password_token
@@ -36,7 +36,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.text :caption, null: false
       t.boolean :email_receiving_activation, null: false, default: true # 初期状態はtrue（リマインダー機能がオン）の状態
       t.boolean :is_deleted, default: false, null: false # 初期状態はfalse（退会機能オフ）の状態
-      t.string :avatar, null: false
 
       t.timestamps null: false
     end
