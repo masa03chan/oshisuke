@@ -2,6 +2,7 @@ class Content < ApplicationRecord
   has_one_attached :image
   has_many :content_followings, dependent: :destroy
   has_many :events, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   validates :title, presence: true
   validates :caption, presence: true
@@ -12,8 +13,8 @@ class Content < ApplicationRecord
   end
 
 # ログイン中のユーザーがそのコンテンツに対してフォローをしているか
-  def content_followed?(user)
-   content_followings.where(user_id: user.id).exists?
+  def content_followed?(end_user)
+   content_followings.where(end_user_id: end_user.id).exists?
   end
 
   def get_image(width, height)

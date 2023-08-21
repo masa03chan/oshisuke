@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
-  }
 
-  devise_for :users, controllers: {
+  devise_for :end_users, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
+  }
+
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
   }
 
   namespace :admin do
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
       resource :content_followings, only: [:index] #コンテンツのフォロー用
       resources :events, only: [:index, :show, :destroy]
     end
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :end_users, only: [:index, :show, :edit, :update]
   end
 
   scope module: :public do
@@ -30,16 +31,19 @@ Rails.application.routes.draw do
         collection do
           get 'search' #eventsの検索用
         end
-        resource :bookmarks, only: [:create, :index, :destroy] #マイイベントカレンダー表示、登録用
+        resources :bookmarks, only: [:create, :index, :destroy] #マイイベントカレンダー表示、登録用
       end
     end
-    #resources :users, only: [:show, :edit, :update] do
-      #member do
-       # get :follows, :followers
-      #end
-      #resource :relationships, only: [:create, :destroy] #ユーザー同士のフォロー機能（今後実装予定）
-    #end
+    get "end_users/mypage" => "end_users#show", as: "end_user"
+    get "end_users/infomation/edit" => "end_users#edit", as: "edit_public_end_users"
+    patch "end_users/infomation" => "end_users#update", as: "update_public_end_users"
+    get "end_users/delete_confirm" => "end_users#delete_confirm"
+    patch "end_users/delete" => "end_users#delete_process"
+    get 'end_users/:id/follows', to: 'end_users#follows', as: "follows_end_user"
+    get 'end_users/:id/followers', to: 'end_users#followers', as: "followers_end_user"
+      #ユーザー同士のフォロー機能（今後実装予定）
+    post 'end_users/:end_user_id/relationships', to: 'relationships#create', as: "end_user_relationships"
+    delete 'end_users/:end_user_id/relationships', to: 'relationships#delete'
   end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

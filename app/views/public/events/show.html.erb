@@ -35,17 +35,17 @@
     </div>
   </div>
   <div class="row justify-content-center">
-    <!--% if user_signed_in? %-->
+    <% if end_user_signed_in? %>
       <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
         <%= link_to "カレンダーに戻る", content_events_path(@content), class: "btn btn-primary" %>
       </div>
       <div class="col-md-3 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
         <%= link_to "詳細を編集する", edit_content_event_path(@content, @event), class: "btn btn-success" %>
       </div>
-    <!--% else %>
+    <% else %>
       <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
-        <!%= link_to "カレンダーに戻る", content_events_path(@content), class: "btn btn-primary" %>
+        <%= link_to "カレンダーに戻る", content_events_path(@content), class: "btn btn-primary" %>
       </div>
-    <!% end %-->
+    <% end %>
   </div>
 </div>

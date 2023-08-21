@@ -1,10 +1,5 @@
 <li class="nav-link text-light">
-  <%= link_to content_event_bookmarks_path, class: "header-button" do %>
-    <button type="button" class="text-nowrap btn btn-outline-info">マイカレンダー</button>
-  <% end %>
-</li>
-<li class="nav-link text-light">
-  <%= link_to user_path, class: "header-button" do %>
+  <%= link_to end_user_path, class: "header-button" do %>
     <button type="button" class="text-nowrap btn btn-outline-info">マイページ</button>
   <% end %>
 </li>
@@ -14,7 +9,7 @@
   <% end %>
 </li>
 <li class="nav-link text-light">
-  <%= link_to destroy_user_session_path, method: :delete, class: "header-button" do %>
+  <%= link_to destroy_end_user_session_path, method: :delete, class: "header-button" do %>
     <button type="button" class="text-nowrap btn btn-outline-secondary">ログアウト</button>
   <% end %>
 </li>

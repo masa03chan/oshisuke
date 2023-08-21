@@ -1,9 +1,9 @@
 class CreateBookmarks < ActiveRecord::Migration[6.1]
   def change
     create_table :bookmarks do |t|
-      t.references :user, null: false, foreign_key: true
-      t.references :event, null: false, foreign_key: true
-
+      t.integer :end_user_id, null: false
+      t.integer :event_id, null: false
+      t.integer :content_id, null: false
       t.timestamps
     end
   end

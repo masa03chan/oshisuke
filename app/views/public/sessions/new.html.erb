@@ -10,16 +10,16 @@
   <div class="row">
     <div class="col-md-12 mx-auto justify-content-center">
       <h6 class="d-inline-block bg-light col-md-4 my-4 text-center text-nowrap">会員の方はこちらからログイン</h6>
-      <% if @user.errors.any? %>
-        <%= @user.errors.count %>件のエラーがあります。
+      <% if @end_user.errors.any? %>
+        <%= @end_user.errors.count %>件のエラーがあります。
         <ul>
-          <% @user.errors.full_messages.each do |message| %>
+          <% @end_user.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
       <% end %>
       <div class="row justify-content-center">
-        <%= form_with model: @user, url: user_session_path do |f| %>
+        <%= form_with model: @end_user, url: end_user_session_path do |f| %>
           <div class="form-group row mb-3">
             <div class="col-md-3 col-form-label ">
               <%= f.label :email, class: "text-nowrap" do %>メールアドレス<% end %>
@@ -50,7 +50,7 @@
   <h6 class="d-inline-block bg-light col-md-3 my-4 text-center text-nowrap">会員登録がお済みでない方</h6>
   <div class="row">
     <p class="offset-md-2 col-md-3 text-nowrap ">
-      <%= link_to new_user_registration_path, class: "text-underline-primary text-align-center" do %>こちら<% end %>
+      <%= link_to new_end_user_registration_path, class: "text-underline-primary text-align-center" do %>こちら<% end %>
     から新規登録を行ってください。
     </p>
   </div>
