@@ -1,0 +1,30 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h5 class="bg-light col-2 text-center my-5 text-nowrap">マイページ</h5>
+    </div>
+  </div>
+  <div class="row text-center mb-2">
+    <div class="col-md-10 mx-auto">
+      <div class="d-flex mb-2">
+        get_profile_image(100, 100)
+        <p class="col-md-4"><%= @end_user.name %></p>
+      </div>
+      <div class="d-flex mb-2">
+        <label class="col-md-2">プロフィール文</label>
+        <p class="col-md-3"><%= @end_user.caption %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+      <%= link_to "マイカレンダー", content_event_bookmarks_path(@content, @event), class: "btn btn-primary" %>
+    </div>
+    <div class="col-md-3 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+      <%= link_to "詳細を編集する", edit_public_end_users(current_end_user), class: "btn btn-success" %>
+    </div>
+  </div>
+</div>

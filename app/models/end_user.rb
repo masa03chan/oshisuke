@@ -10,6 +10,10 @@ class EndUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :encrypted_password, presence: true
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_content_image.jpg')

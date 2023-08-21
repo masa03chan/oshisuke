@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-0">
+      <h4 class="d-inline-block col text-center my-4 text-nowrap">本当に退会しますか？</h4>
+    <div>
+    <div class="col my-4">
+      <p class="text-center">退会すると、会員登録情報や</br>
+      マイカレンダーが閲覧できなくなります。</br>
+      退会する場合は、『退会する』をクリックしてください。</p>
+    </div>
+    <div class="col text-center">
+      <%= link_to '退会しない', end_user_path(current_end_user), class: "col-3 btn btn-primary text-nowrap", role: "button" %>
+      <%= link_to "退会する", end_users_delete_path(current_end_user), method: :patch, "data-confirm" => "退会します。よろしいですか？", class: "col-3 btn btn-danger text-nowrap", role: "button" %>
+    </div>
+  </div>
+</div>
