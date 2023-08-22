@@ -38,6 +38,17 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  host = 'c1ae346c03744d179a6618354f8c7bf6.vfs.cloud9.ap-northeast-1.amazonaws.com'
+  config.action_mailer.default_url_options = {  host: host, protocol: 'https' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    domain: "gmail.com",
+    port:587,
+    end_user_name: ENV['MAIL_END_USER_NAME'], #送信元となるメールアドレス（xxxx@gmail.com)
+    password: ENV['MAIL_PASSWORD'], #アプリパスワード
+    authentication: :login
+  }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

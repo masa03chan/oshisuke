@@ -17,19 +17,19 @@
       <div class="d-flex mb-2">
         <h4 class="col-md-4"><%= @content.title %></h4>
         <div class="col-3">
-          <% if end_user_signed_in? %>
-            <% if content_followed?(current_user) %>
+          <!--% if end_user_signed_in? %>
+            <!% if content_followed?(current_end_user) %>
               <!--すでにいいね済みの場合はdestroyアクション-->
-              <%= link_to content_content_followings_path(@content.id), method: :delete do %>
+              <!--%= link_to content_content_followings_path(@content.id), method: :delete do %>
                 <span class: "btn btn-light">フォロー解除</span>
-              <% end %>
-            <% else %>
-              <!--まだいいねしていない場合はcreateアクション-->
-              <%= link_to content_content_followings_path(@content.id), method: :post do %>
+              <!% end %>
+            <!% else %>
+              <!まだいいねしていない場合はcreateアクション-->
+              <!--%= link_to content_content_followings_path(@content.id), method: :post do %>
                 <span class: "btn btn-primary">フォロー</span>
-              <% end %>
-            <% end %>
-          <% end %>
+              <!% end %>
+            <!% end %>
+          <!% end %-->
         </div>
       </div>
       <div class="d-flex mb-2">

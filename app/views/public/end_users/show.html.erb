@@ -8,23 +8,22 @@
     </div>
   </div>
   <div class="row text-center mb-2">
-    <div class="col-md-10 mx-auto">
-      <div class="d-flex mb-2">
-        get_profile_image(100, 100)
-        <p class="col-md-4"><%= @end_user.name %></p>
+    <div class="col-md-10 mx-auto d-flex flex-row">
+      <div class="d-flex flex-column mb-2 col-md-3">
+        <%= image_tag @end_user.get_profile_image(100, 100), class: "img-thumbnail" %>
+        <h4 class="col-md-4"><%= @end_user.name %></h4>
       </div>
-      <div class="d-flex mb-2">
-        <label class="col-md-2">プロフィール文</label>
-        <p class="col-md-3"><%= @end_user.caption %></p>
+      <div class="d-flex col-md-7 mb-2 ms-2">
+        <p class="col-md text-break text-start"><%= @end_user.caption %></p>
       </div>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
-      <%= link_to "マイカレンダー", content_event_bookmarks_path(@content, @event), class: "btn btn-primary" %>
+      <div class= "btn btn-info"disabled>マイカレンダー</div>
     </div>
     <div class="col-md-3 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
-      <%= link_to "詳細を編集する", edit_public_end_users(current_end_user), class: "btn btn-success" %>
+      <%= link_to "詳細を編集する", edit_public_end_user_path(current_end_user), class: "btn btn-success" %>
     </div>
   </div>
 </div>

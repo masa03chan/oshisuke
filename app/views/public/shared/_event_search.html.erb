@@ -1,4 +1,4 @@
-<%= search_form_for(q, url:content_events_path) do |f| %>
+<%= search_form_for(q, url:content_events_path), class: "d-flex" do |f| %>
   <div class="input-group">
     <%= f.text_field :title_cont, placeholder: "search", class: "form-control" %>
     <span class="input-group-btn">

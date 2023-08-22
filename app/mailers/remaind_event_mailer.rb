@@ -1,2 +1,0 @@
-class RemaindEventMailer < ApplicationMailer
-end

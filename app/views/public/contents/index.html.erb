@@ -5,8 +5,8 @@
   <div class="row d-flex flex-row">
     <div class="col mx-auto justify-content-sm-start justify-content-center">
       <h5 class="d-inline-block col-md-2 text-center my-5 text-nowrap">コンテンツ一覧<span>(全<%= @quantity %>件)</span></h5>
-      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 mx-auto">
-        <% if @contents.present? %>
+      <% if @contents.present? %>
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 mx-auto">
           <% @contents.each do |content| %>
             <div class="d-flex flex-column card p-0 me-md-2 me-0">
               <%= link_to content_path(content.id), class: "card-img-top text-center" do %>
@@ -20,13 +20,15 @@
               </div>
             </div>
           <% end %>
-        <% else %>
+        </div>
+      <% else %>
+        <div class="row text-center">
           <p class="text-center">コンテンツが見つかりませんでした。コンテンツを登録してみましょう！</p>
           <div class="text-center">
-            <%= link_to "コンテンツを登録する", new_content_path, class: "col-md-5 btn btn-primary text-nowrap" %>
+            <%= link_to "コンテンツを登録する", new_content_path, class: "col-md-5 btn btn-info text-nowrap" %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
       <%= paginate @contents %>
     </div>
   </div>

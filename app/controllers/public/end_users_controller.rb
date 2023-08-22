@@ -1,6 +1,6 @@
 class Public::EndUsersController < ApplicationController
   before_action :set_end_user
-  before_action :set_bookmark, only: [:show]
+  #before_action :set_bookmark, only: [:show]
 
   def show
   end
@@ -10,7 +10,8 @@ class Public::EndUsersController < ApplicationController
 
   def update
     if @end_user.update(end_user_params)
-      redirect_to root_path
+      flash[:notice] = "ユーザー情報を更新しました。"
+      redirect_to end_user_path(current_end_user)
     else
       render :edit
     end
@@ -34,10 +35,10 @@ class Public::EndUsersController < ApplicationController
     @end_user = EndUser.find(current_end_user.id)
   end
 
-  def set_bookmark
-    @content = Content.find(params[:content_id])
-    @event = @content.events.find(params[:event_id])
-  end
+  #def set_bookmark
+    #@content = Content.find(params[:content_id])
+    #@event = @content.events.find(params[:event_id])
+  #end
 
   def end_user_params
     params.require(:end_user).permit(:name, :email, :profile_image, :caption, :encrypted_password)

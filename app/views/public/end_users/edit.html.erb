@@ -1,0 +1,69 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h5 class="bg-light col-2 text-center my-5 text-nowrap">ユーザー情報編集</h5>
+    </div>
+  </div>
+  <div class="row justify-content-around">
+    <% if @end_user.errors.any? %>
+    <div>
+      <h2><%= @end_user.errors.count %> 件のエラーがあります。</h2>
+      <ul>
+      <% @end_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="col-sm-12 mx-auto">
+      <%= form_with model: @end_user, url: update_public_end_user_path(current_end_user), method: :patch do |f| %>
+        <div class="form-group row mb-3">
+          <div class="col-md-3 col-form-label">
+            <%= f.label :name, "名前" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "推し助", class: "form-control border border-secondary rounded" %>
+          </div>
+        </div>
+
+        <div class="form-group row mb-3">
+          <div class="col-md-3 col-form-label">
+            <%= f.label :email, "メールアドレス",class: "text-nowrap" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control border border-secondary rounded" %>
+          </div>
+        </div>
+
+        <div class="form-group row mb-3">
+          <div class="col-md-3 col-form-label">
+            <%= f.label :profile_image, class: "text-nowrap" do %>プロフィール画像<% end %>
+          </div>
+          <div class="col-md-6">
+            <%= f.file_field :profile_image, accept: "image/*", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row mb-5">
+          <div class="col-md-3 col-form-label">
+            <%= f.label :caption, class: "text-nowrap" do %>プロフィール文<% end %>
+          </div>
+          <div class="col-md-6">
+            <%= f.text_area :caption, autofocus: true, autocomplete: "caption", placeholder: "よろしくお願いします。", class: "form-control border border-secondary rounded" %>
+          </div>
+        </div>
+
+        <div class="form-group row ">
+          <div class="actions offset-md-4 col-md-4 d-grid gap-2 col-form">
+            <%= f.submit "変更を保存", class: "btn btn-success" %>
+            <%= link_to "マイページに戻る", end_user_path(current_end_user), class: "btn btn-outline-info mb-5" %>
+            <%= link_to "退会する", end_users_delete_confirm_path(current_end_user), class: "btn btn-outline-danger text-nowrap" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

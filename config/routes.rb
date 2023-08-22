@@ -31,12 +31,12 @@ Rails.application.routes.draw do
         collection do
           get 'search' #eventsの検索用
         end
-        resources :bookmarks, only: [:create, :index, :destroy] #マイイベントカレンダー表示、登録用
+        resource :bookmarks, only: [:create, :destroy] #マイイベントカレンダー表示、登録用
       end
     end
     get "end_users/mypage" => "end_users#show", as: "end_user"
-    get "end_users/infomation/edit" => "end_users#edit", as: "edit_public_end_users"
-    patch "end_users/infomation" => "end_users#update", as: "update_public_end_users"
+    get "end_users/infomation/edit" => "end_users#edit", as: "edit_public_end_user"
+    patch "end_users/infomation" => "end_users#update", as: "update_public_end_user"
     get "end_users/delete_confirm" => "end_users#delete_confirm"
     patch "end_users/delete" => "end_users#delete_process"
     get 'end_users/:id/follows', to: 'end_users#follows', as: "follows_end_user"

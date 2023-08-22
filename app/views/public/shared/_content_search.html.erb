@@ -1,4 +1,4 @@
-<%= search_form_for @search, url: contents_path do |f| %>
+<%= search_form_for @search, url: contents_path, class: "d-flex" do |f| %>
   <div class="input-group align-items-center">
     <%= f.text_field :title_cont, placeholder: "推しを探す！", class: "form-control" %>
     <span class="input-group-btn">
