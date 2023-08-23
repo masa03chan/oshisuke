@@ -1,2 +1,41 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <h5 class="bg-light col-2 text-center my-5 text-nowrap">会員一覧</h5>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-10 mx-auto">
+      <table class="table">
+        <thead class="thead-light">
+          <tr class="text-nowrap">
+            <th scope="col-1">会員ID</th>
+            <th scope="col-2">氏名</th>
+            <th scope="col-2">メールアドレス</th>
+            <th scope="col-2">ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @end_users.each do |end_user| %>
+            <tr class="table">
+              <td class="col-1"><%= end_user.id %></td>
+              <td class="col-2 text-nowrap"><%= link_to end_user.name, admin_end_user_path(end_user.id), style: "text-decoration: underline; color: black" %></td>
+              <td class="col-2"><%= end_user.email %></td>
+              <td class="col-2">
+                <% if end_user.is_deleted? %>
+                  <P class="font-weight-bold", style="color-grey">退会</P>
+                <% else %>
+                  <P class="font-weight-bold", style="color:lightgreen">有効</P>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          <%= paginate @end_users %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
