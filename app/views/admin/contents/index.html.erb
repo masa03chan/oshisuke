@@ -1,2 +1,33 @@
-<h1>Admin::Contents#index</h1>
-<p>Find me in app/views/admin/contents/index.html.erb</p>
+<div>
+  <%= flash[:notice] %>
+</div>
+<div class="container">
+  <div class="row d-flex flex-row">
+    <div class="col mx-auto justify-content-sm-start justify-content-center">
+      <h5 class="d-inline-block col-md-2 text-center my-5 text-nowrap">管理コンテンツ一覧<span>(全<%= @quantity %>件)</span></h5>
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 mx-auto">
+          <% @contents.each do |content| %>
+            <div class="d-flex flex-column card p-0 me-md-2 me-0">
+              <%= link_to admin_content_path(content.id), class: "card-img-top text-center" do %>
+                <%= image_tag content.get_image(180, 100), class: "img-fluid" %>
+              <% end %>
+              <div class="card-body">
+                <h6 class="card-title"><%= content.title %></h6>
+                <p class="card-text text-end">フォロワー:
+                  <%= content.content_followings.count.to_s(:delimited) %>人
+                </p>
+                <p class="card-text">ステータス:
+                  <% if content.status? %>
+                    <P class="font-weight-bold", style="color:lightgreen">有効</P>
+                  <% else %>
+                    <P class="font-weight-bold", style="color-grey">退会</P>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <%= paginate @contents %>
+    </div>
+  </div>
+</div>
