@@ -17,25 +17,32 @@
         <p class="col-md-3"><%= @event.start_time.strftime('%Y-%m-%d %H:%M') %></p>/
         <p class="col-md-3"><%= @event.end_time.strftime('%Y-%m-%d %H:%M') %></p></br>
       </div>
-      <div class="d-flex mb-2">
-        <label class="col-md-2">場所</label>
-        <p class="col-md-3"><%= @event.place %></p>
-      </div>
-      <div class="d-flex mb-2">
-        <p class="text-break text-start offset-md-2 col-md-8"><%= @event.caption %></p></br>
-      </div>
-      <div class="d-flex mb-5">
-        <label class="col-md-2">サイトリンク</label>
-        <div class="col-md-5">
-          <%= link_to @event.links do %>
-            <%= @event.links %>
-          <% end %>
+      <% if @event.place.present? %>
+        <div class="d-flex mb-2">
+          <label class="col-md-2">場所</label>
+          <p class="col-md-3"><%= @event.place %></p>
         </div>
-      </div>
+      <% end %>
+      <% if @event.caption.present? %>
+        <div class="d-flex mb-2">
+          <label class="col-md-2">イベント説明</label>
+          <p class="text-break text-start col-md-8"><%= @event.caption %></p></br>
+        </div>
+      <% end %>
+      <% if @event.links.present? %>
+        <div class="d-flex mb-5">
+          <label class="col-md-2">サイトリンク</label>
+          <div class="col-md-5">
+            <%= link_to @event.links do %>
+              <%= @event.links %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="row justify-content-center">
-    <% if end_user_signed_in? %>
+    <% if end_user_signed_in? || admin_signed_in? %>
       <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
         <%= link_to "カレンダーに戻る", content_events_path(@content), class: "btn btn-primary" %>
       </div>

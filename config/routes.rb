@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         get 'search' #contentsの検索用
       end
       resource :content_followings, only: [:index] #コンテンツのフォロー用
-      resources :events, only: [:index, :show, :destroy]
+      resources :events, only: [:destroy]
     end
     resources :end_users, only: [:index, :show, :edit, :update]
   end
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
         collection do
           get 'search' #eventsの検索用
         end
-        resource :bookmarks, only: [:create, :destroy] #マイイベントカレンダー表示、登録用
+        resource :bookmarks, only: [:create, :destroy] #マイイベントカレンダー登録用
       end
     end
     get "end_users/mypage" => "end_users#show", as: "end_user"

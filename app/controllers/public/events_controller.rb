@@ -9,6 +9,7 @@ class Public::EventsController < ApplicationController
 
   def new
     @event = @content.events.new
+    @default_date = params[:default_date]&.to_date
   end
 
   def create

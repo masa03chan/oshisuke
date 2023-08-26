@@ -19,13 +19,22 @@
         </span>
       </div>
       <% events.each do |event| %>
-        <div>
-          <%= link_to content_event_path(@content, event) do %>
+        <div class="event-button">
+          <%= link_to content_event_path(@content, event), class: "btn btn-sm btn-outline-dark link-button","data-event-id" => event.id do %>
             <%= event.title %>
-            <%= event.start_time.strftime('%H:%M') %>
           <% end %>
+          <div>
+            <button class="btn btn-sm btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseColorChangeForm" aria-expanded="false" aria-controls="collapseColorChangeForm">
+              カラー変更
+            </button>
+            <div class="color-change-form collapse" id="collapseColorChangeForm">
+              <input type="color" class="color-picker" data-event-id="<%= event.id %>">
+              <button class="apply-color-btn btn btn-sm btn-outline-info" data-event-id="<%= event.id %>">適用</button>
+            </div>
+          </div>
         </div>
       <% end %>
+      <script src="<%= asset_pack_path 'button_color.js' %>"></script>
     <% end %>
   </div>
 </div>
