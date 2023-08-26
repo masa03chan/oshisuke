@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :contents, except: [:edit, :update] do
+    resources :contents, only: [:index, :edit, :update] do
       collection do
         get 'search' #contentsの検索用
       end

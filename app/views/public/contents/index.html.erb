@@ -17,6 +17,15 @@
                 <p class="card-text text-end">フォロワー:
                   <%= content.content_followings.count.to_s(:delimited) %>人
                 </p>
+                <% if admin_signed_in? %>
+                  <p class="card-text text-end">ステータス:
+                    <% if content.status? %>
+                      <span class="font-weight-bold", style="color:lightgreen">有効</span>
+                    <% else %>
+                      <span class="font-weight-bold", style="color-grey">非表示</span>
+                    <% end %>
+                  </p>
+                <% end %>
               </div>
             </div>
           <% end %>

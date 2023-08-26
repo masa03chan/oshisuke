@@ -9,10 +9,10 @@ class Admin::ContentsController < ApplicationController
   def index
     if params[:q]
       @results = @q.result
-      @contents = @q.result.where(status: true).page(params[:page]).per(10)
-      @quantity = @q.result.where(status: true).count
+      @contents = @q.result.page(params[:page]).per(10)
+      @quantity = @q.result.count
     else
-      @contents = Content.where(status: true).page(params[:page]).per(10)
+      @contents = Content.page(params[:page]).per(10)
       @quantity = Content.count
     end
   end

@@ -1,9 +1,5 @@
 class Admin::EventsController < ApplicationController
-  def index
-  end
-
-  def show
-  end
+  before_action :authenticate_admin!, only: [:destroy]
 
   def destroy
   end

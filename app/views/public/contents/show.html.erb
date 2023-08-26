@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h5 class="bg-light col-2 text-center my-5 text-nowrap">コンテンツ詳細</h5>
+      <h5 class="bg-light col-2 text-center my-5 text-nowrap"><% if admin_signed_in? %>管理<% end %>コンテンツ詳細</h5>
     </div>
   </div>
   <div class="row text-center mb-2">
@@ -20,12 +20,12 @@
           <!--% if end_user_signed_in? %>
             <!% if content_followed?(current_end_user) %>
               <!--すでにいいね済みの場合はdestroyアクション-->
-              <!--%= link_to content_content_followings_path(@content.id), method: :delete do %>
+              <!--%= link_to content_content_followings_path(@content), method: :delete do %>
                 <span class: "btn btn-light">フォロー解除</span>
               <!% end %>
             <!% else %>
               <!まだいいねしていない場合はcreateアクション-->
-              <!--%= link_to content_content_followings_path(@content.id), method: :post do %>
+              <!--%= link_to content_content_followings_path(@content), method: :post do %>
                 <span class: "btn btn-primary">フォロー</span>
               <!% end %>
             <!% end %>
@@ -52,6 +52,13 @@
       </div>
       <div class="col-md-3 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
         <%= link_to "詳細を編集する", edit_content_path(@content), class: "btn btn-success" %>
+      </div>
+    <% elsif admin_signed_in? %>
+      <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+        <%= link_to "イベントカレンダー", content_events_path(@content), class: "btn btn-primary" %>
+      </div>
+      <div class="col-md-3 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
+        <%= link_to "詳細を編集する", edit_admin_content_path(@content), class: "btn btn-success" %>
       </div>
     <% else %>
       <div class="col-md-4 d-grid gap-2 d-md-block d-md-flex justify-content-md-center">
