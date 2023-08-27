@@ -2,8 +2,13 @@ Rails.application.routes.draw do
 
   devise_for :end_users, controllers: {
     registrations: "public/registrations",
+    passwords: 'public/passwords',
     sessions: 'public/sessions'
   }
+
+  devise_scope :end_user do
+    post 'end_users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"

@@ -14,6 +14,15 @@ class EndUser < ApplicationRecord
   validates :email, presence: true
   validates :encrypted_password, presence: true
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |end_user|
+      end_user.password = SecureRandom.urlsafe_base64
+      end_user.password_confirmation = end_user.password
+      end_user.name = "ゲスト"
+      end_user.caption = "ゲストユーザーです。"
+    end
+  end
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_content_image.jpg')

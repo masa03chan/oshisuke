@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+  #before_action :ensure_normal_end_user, only: [:update, :destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  #def ensure_normal_end_user
+    #if current_end_user.email == 'guest@example.com' && current_end_user.name == 'ゲスト'
+      #redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
+    #end
+  #end
   # GET /resource/sign_up
   # def new
   #   super

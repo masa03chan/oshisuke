@@ -13,3 +13,8 @@
     <button type="button" class="text-nowrap btn btn-outline-info">ログイン</button>
   <% end %>
 </li>
+<li class="nav-link text-light">
+  <%= link_to end_users_guest_sign_in_path, method: :post, class: "header-button" do %>
+    <button type="button" class="text-nowrap btn btn-outline-secondary">ゲストログイン（閲覧用）</button>
+  <% end %>
+</li>

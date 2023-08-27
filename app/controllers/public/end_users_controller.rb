@@ -1,5 +1,6 @@
 class Public::EndUsersController < ApplicationController
   before_action :set_end_user
+  before_action :ensure_normal_end_user, only: [:update, :destroy]
   #before_action :set_bookmark, only: [:show]
 
   def show
@@ -33,6 +34,16 @@ class Public::EndUsersController < ApplicationController
 
   def set_end_user
     @end_user = EndUser.find(current_end_user.id)
+  end
+
+  def guest_end_user?
+    current_end_user.email == 'guest@example.com' && current_end_user.name == 'ゲスト'
+  end
+
+  def ensure_normal_end_user
+    if guest_end_user?
+      redirect_to root_path, notice: 'ゲストユーザーの更新・削除はできません。'
+    end
   end
 
   #def set_bookmark

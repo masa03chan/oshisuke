@@ -1,4 +1,5 @@
 class Public::BookmarksController < ApplicationController
+  before_action :authenticate_end_user!
   before_action :set_content
   before_action :set_event
   before_action :set_bookmark, only: [:destroy]

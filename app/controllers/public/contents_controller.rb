@@ -1,5 +1,7 @@
 class Public::ContentsController < ApplicationController
   before_action :set_q, only: [:index, :search]
+  before_action :set_content, except: [:index]
+
   def search
     @results = @q.result
   end
@@ -30,15 +32,12 @@ class Public::ContentsController < ApplicationController
   end
 
   def show
-    @content = Content.find(params[:id])
   end
 
   def edit
-    @content = Content.find(params[:id])
   end
 
   def update
-    @content = Content.find(params[:id])
     if @content.update(content_params)
       flash[:notice] = "コンテンツ情報を編集しました。"
       redirect_to content_path(@content.id)
@@ -51,6 +50,10 @@ private
 
   def set_q
     @q = Content.ransack(params[:q])
+  end
+
+  def set_content
+    @content = Content.find(params[:id])
   end
 
   def content_params

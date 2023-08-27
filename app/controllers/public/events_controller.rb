@@ -1,4 +1,5 @@
 class Public::EventsController < ApplicationController
+  before_action :authenticate_end_user!, except: [:search, :index, :show]
   before_action :set_q, only: [:index, :search]
   before_action :set_content
   before_action :set_event, only: [:show, :edit, :update]
@@ -9,7 +10,7 @@ class Public::EventsController < ApplicationController
 
   def new
     @event = @content.events.new
-    @default_date = params[:default_date]&.to_date
+    @default_date = params[:default_date]&.to_date#新規投稿の際、カレンダーの日付をそのままフォームに渡します。
   end
 
   def create

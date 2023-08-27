@@ -3,8 +3,11 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-12 d-flex">
+    <div class="col-md-12 d-flex flex-row">
       <h5 class="bg-light col-3 text-center my-5 text-nowrap"><%= @content.title %>カレンダー</h5>
+      <div class="offset-2 col-7 d-flex align-items-center">
+        <%= render "public/shared/content_search" %>
+      </div>
     </div>
   </div>
   <div class="row text-center">
