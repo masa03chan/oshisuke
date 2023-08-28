@@ -76,7 +76,19 @@ ActiveRecord::Schema.define(version: 2023_08_20_054332) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "end_users", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
+    t.string "title", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.integer "content_id", null: false
+    t.string "place", null: false
+    t.string "caption", null: false
+    t.string "links", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -88,20 +100,8 @@ ActiveRecord::Schema.define(version: 2023_08_20_054332) do
     t.boolean "email_receiving_activation", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_end_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.string "title", null: false
-    t.datetime "start_time", null: false
-    t.datetime "end_time", null: false
-    t.integer "content_id", null: false
-    t.string "place", null: false
-    t.string "caption", null: false
-    t.string "links", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
