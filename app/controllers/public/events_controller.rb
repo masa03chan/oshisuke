@@ -24,7 +24,12 @@ class Public::EventsController < ApplicationController
   end
 
   def index
-    @events = @content.events
+    if params[:q]
+      @results = @q.result
+      @events = @q.result.all
+    else
+      @events = @content.events
+    end
   end
 
   def show
