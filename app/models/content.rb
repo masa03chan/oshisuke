@@ -4,6 +4,7 @@ class Content < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
+  validates :image, presence: true
   validates :title, presence: true
   validates :caption, presence: true
   validates :public_link, presence: true

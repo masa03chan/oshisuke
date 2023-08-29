@@ -1,6 +1,6 @@
 class Public::ContentsController < ApplicationController
   before_action :set_q, only: [:index, :search]
-  before_action :set_content, except: [:index]
+  before_action :set_content, only: [:show, :edit, :update]
 
   def search
     @results = @q.result
