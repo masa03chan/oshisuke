@@ -29,7 +29,7 @@
 ​
 ## 使用素材
 - ドメイン取得
-  お名前.com　https://navi.onamae.com/
+- お名前.com　https://navi.onamae.com/
 
 ## 実装機能リスト
 - https://docs.google.com/spreadsheets/d/1xElls9VpV-StKrczkRsmSQYUk8vUExTPXPZns3sVAww/edit?usp=sharing
