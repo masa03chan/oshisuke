@@ -6,7 +6,7 @@ class Content < ApplicationRecord
 
   validates :image, presence: true
   validates :title, presence: true
-  validates :caption, presence: true
+  validates :caption, presence: true, length: { maximum: 2000 }
   validates :public_link, presence: true
 
   def self.ransackable_attributes(auth_object = nil)
