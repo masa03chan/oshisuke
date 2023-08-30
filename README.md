@@ -18,9 +18,7 @@
 - コンテンツのイベントを検索するとき
 - コンテンツスケジュール管理をするとき
 - 友達と共通のスケジュール管理をするとき
-​
-## 設計書
-後ほど作成予定
+
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -30,8 +28,8 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- フリーフォント素材として以下を使用
-  - Font Free(https://fontfree.me/)
+- ドメイン取得
+  お名前.com　https://navi.onamae.com/
 
 ## 実装機能リスト
 - https://docs.google.com/spreadsheets/d/1xElls9VpV-StKrczkRsmSQYUk8vUExTPXPZns3sVAww/edit?usp=sharing
